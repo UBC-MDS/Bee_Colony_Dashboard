@@ -64,5 +64,5 @@ Before you submit a pull request, check that it meets these guidelines:
 
 ## Code of Conduct
 
-Please note that the `py_outlier_utils` project is released with a [Contributor Code of
+Please note that the `DSCI_532_Group_9` project is released with a [Contributor Code of
 Conduct](CONDUCT.md) Code of Conduct. By contributing to this project you agree to abide by its terms.
