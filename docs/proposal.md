@@ -30,6 +30,22 @@ filtering by state and time.
 
 ## Description of the data
 
+The honey bee colonies and stressors dataset was obtained from
+[TidyTuesday](https://github.com/rfordatascience/tidytuesday/blob/master/data/2022/2022-01-11/readme.md)
+who in turn obtained the raw data from the USDA.
+
+The time series data are collected from a stratified sample of
+operations that responded as having honey bees on the Bee and Honey
+Inquiry and from the NASS list frame in USA. For operations with five or
+more colonies, data was collected on a quarterly basis; operations with
+less than five colonies were collected with an annual survey.
+
+In our dashboard, we will visualize colony_n which is the number of
+colonies in a state, through a time series plot and a geographic map.
+Additionally, we visualize the percentage of colonies (stress_pct)
+affected by different colony health stressors (stressor) for a state
+over time through a series of stacked bar plots.
+
 ## Research questions and usage scenarios
 
 Our project, the Bee Colony Dashboard helps identify the colony collapse
