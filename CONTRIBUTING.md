@@ -40,9 +40,9 @@ If you are proposing a feature:
 
 ## Get Started!
 
-Ready to contribute? Here's how to set up `DSCI_532_Group_9` for local development.
+Ready to contribute? Here's how to set up `Bee_Colony_Dashboard` for local development.
 
-1. Download a copy of `DSCI_532_Group_9` locally.
+1. Download a copy of `Bee_Colony_Dashboard` locally.
    
 2. Use `git` (or similar) to create a branch for local development and make your changes:
 
@@ -64,5 +64,5 @@ Before you submit a pull request, check that it meets these guidelines:
 
 ## Code of Conduct
 
-Please note that the `DSCI_532_Group_9` project is released with a [Contributor Code of
+Please note that the `Bee_Colony_Dashboard` project is released with a [Contributor Code of
 Conduct](CONDUCT.md) Code of Conduct. By contributing to this project you agree to abide by its terms.
