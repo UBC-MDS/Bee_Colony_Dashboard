@@ -30,28 +30,65 @@ app.layout = html.Div(
             options=[
                 {'label': state, 'value': state} for state in colony['state'].unique()
             ],
-            # multi=True,
             placeholder="Select a state..."
+        ),
+        dcc.Dropdown(
+            id='start-date-widget',
+            value="2015Q1",
+            options=[
+                {'label': start_date, 'value': start_date} for start_date in colony['period'].unique()
+            ],
+            placeholder="Select a start date..."
+        ),
+        dcc.Dropdown(
+            id='end-date-widget',
+            value="2015Q4",
+            options=[
+                {'label': end_date, 'value': end_date} for end_date in colony['period'].unique()
+            ],
+            placeholder="Select an end date..."
         )
     ]
 )
 
 @app.callback(
     Output("ncolony_chart", "srcDoc"),
-    Input("state-widget", "value"))
-def plot_altair(state_arg):
-    colony_chart = (
-        alt.Chart(colony[colony["state"].isin([state_arg])], title="Num")
-        .mark_line()
-        .encode(
-            x=alt.X("time", title="Time period"),
-            y=alt.Y("colony_n", title="Number of colonies", axis=alt.Axis(format="s")),
-            color=alt.Color("state", title="State"),
+    Input("state-widget", "value"),
+    Input("start-date-widget", "value"),
+    Input("end-date-widget", "value")
+)
+def plot_altair(state_arg, start_date, end_date):
+    colony_chart_line = (
+        alt.Chart(
+            colony[
+                (colony["state"] == state_arg)
+                & (colony["period"] >= start_date)
+                & (colony["period"] <= end_date)
+            ],
+            title="Number of Colonies"
         )
-        .configure_axis(titleFontSize=20, labelFontSize=14, grid=False)
-        .configure_legend(titleFontSize=20, labelFontSize=14)
-        .properties(width=500)
+        .mark_line(size=4, color="black")
+        .encode(
+            x=alt.X("time", title="Time", axis=alt.Axis(format="%b %Y", labelAngle=30)),
+            y=alt.Y("colony_n", title="Count", axis=alt.Axis(format="s"), scale=alt.Scale(zero=False)),
+            tooltip=alt.Tooltip(["colony_n"], title="Count")
+        )
     )
+    
+    colony_chart_point = colony_chart_line.mark_point(color="black", fill="black", size=50)
+    
+    colony_chart = (
+        (
+            colony_chart_line + colony_chart_point
+        )
+        .configure(background='#fffadc', padding=20)
+        .configure_axis(titleFontSize=20, labelFontSize=14, grid=False)
+        .configure_title(fontSize=20)
+        .configure_legend(titleFontSize=20, labelFontSize=14)
+        .configure_view(strokeWidth=0)
+        .properties(width=500, height=250)
+    )
+    
     return colony_chart.to_html()
 
 
