@@ -1,11 +1,16 @@
 import pandas as pd
 import altair as alt
 from dash import Dash, html, dcc, Input, Output
+from ctypes import pointer
+import dash_bootstrap_components as dbc
 
 # Data wrangling
 colony = pd.read_csv(
     "https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-01-11/colony.csv",
 )
+stressor = pd.read_csv('stressor.csv')
+state_info = pd.read_csv('state_info.csv')
+state_map = alt.topo_feature(data.us_10m.url, 'states')
 
 colony["start_month"] = colony["months"].str.split('-', 1, expand=True)[0]
 colony["year"] = colony["year"].astype("str")
