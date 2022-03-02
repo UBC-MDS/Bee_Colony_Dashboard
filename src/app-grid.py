@@ -53,7 +53,7 @@ app.layout = dbc.Container([
                         options=[{'label': col, 'value': col} for col in colony['months'].unique()],
                         style={'height': '50px', 'vertical-align': 'middle', 'font-family':'Roboto', 
                     'font-size':'28px', 'textAlign': 'center',
-                    'border-radius': '10px'}, , placeholder="Select a time period")),
+                    'border-radius': '10px'},  placeholder="Select a time period")),
             ], className="g-0"),
             dbc.Row(dcc.Dropdown(
                 id='indicator-widget',
@@ -103,7 +103,7 @@ def plot_altair(year, month, indicator):
         from_=alt.LookupData(target_df, 'id', [indicator])
     ).encode(color=(indicator + ':Q')).project(type='albersUsa').properties(
         width=400,
-        height=300
+        height=350
     )
 
     text = alt.Chart(target_df).mark_text().encode(
