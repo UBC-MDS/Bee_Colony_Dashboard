@@ -19,6 +19,14 @@ colony["time"] = colony[['year', 'start_month']].agg('-'.join, axis=1)
 colony["time"] = pd.to_datetime(colony["time"])
 colony["period"] = pd.PeriodIndex(pd.to_datetime(colony["time"]), freq='Q').astype("str")
 
+stressor["start_month"] = stressor["months"].str.split('-', 1, expand=True)[0]
+stressor["year"] = stressor["year"].astype("str")
+stressor["time"] = stressor[['year', 'start_month']].agg('-'.join, axis=1)
+stressor["time"] = pd.to_datetime(stressor["time"])
+stressor = stressor.drop(["year", "months", "start_month"], axis=1)
+stressor["period"] = pd.PeriodIndex(pd.to_datetime(stressor["time"]), freq='Q').astype("str")
+
+
 
 # Setup app and layout/frontend
 app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
@@ -28,8 +36,8 @@ app.layout = dbc.Container([
     style={'backgroundColor': '#E9AB17', 'font-family':'Roboto', 'textAlign': 'center', 'font-weight':'800'}),
     dbc.Row([
         dbc.Col([
-            html.H2("What data do you need?",
-            style={'font-family':'Roboto', 'textAlign': 'center', 'font-weight':'600'}),
+            html.H3("Select a state...",
+                style={'font-family':'Roboto', 'font-weight':'600'}),
             dbc.Row(dcc.Dropdown(
                 id='state-widget',
                 value='Alabama', 
@@ -37,6 +45,8 @@ app.layout = dbc.Container([
                 style={'height': '50px', 'vertical-align': 'middle', 'font-family':'Roboto', 
                 'font-size':'28px', 'textAlign': 'center', 
                 'border-radius': '10px'}, placeholder="Select a state")),
+            html.H3("Select the time period...",
+                style={'font-family':'Roboto', 'font-weight':'600'}),
             dbc.Row([
                 dbc.Col(
                     dcc.Dropdown(
@@ -55,6 +65,8 @@ app.layout = dbc.Container([
                     'font-size':'28px', 'textAlign': 'center',
                     'border-radius': '10px'},  placeholder="Select a time period")),
             ], className="g-0"),
+            html.H3("Select the indicator...",
+                style={'font-family':'Roboto', 'font-weight':'600'}),
             dbc.Row(dcc.Dropdown(
                 id='indicator-widget',
                 value='colony_lost_pct', 
@@ -64,26 +76,55 @@ app.layout = dbc.Container([
                 'border-radius': '10px'}, placeholder="Select a indicator")),                
             
                 ], 
-            md=6, align="center", ),                
+            md=6, align="start", ),                
         dbc.Col(
-            html.Iframe(
-                id='map',
-                style={'width': '100%', 'height': '400px', 
-                'backgroundColor': '#FBE7A1', 'border': '3px solid #000000', 'border-radius': '10px'}))]),
+            dbc.Card([
+                dbc.CardHeader(
+                    html.H5("Distribution by state",
+                        style={'font-family':'Roboto',  'font-weight':'600'}),
+                        ),
+                dbc.CardBody(
+                    html.Iframe(
+                        id='map',
+                        style={'width': '100%', 'height': '320px' 
+                    }))],
+                        style={'width': '100%', 'height': '400px', 
+                        'backgroundColor': '#FBE7A1', 'border': '2px solid #000000', 'border-radius': '5px', 
+                    })
+                )], align="start",),
     dbc.Row([
         dbc.Col([
-            html.Iframe(
-                id='ncolony_chart',
-                style={'width': '100%', 'height': '400px', 
-                'backgroundColor': '#FBE7A1', 'border': '3px solid #000000', 'border-radius': '10px'})
+            dbc.Card([
+                dbc.CardHeader(
+                    html.H5("Number of bee colonies over time",
+                        style={'font-family':'Roboto',  'font-weight':'600'})
+                        ),
+                dbc.CardBody(
+                    html.Iframe(
+                        id='ncolony_chart',
+                        style={'width': '100%', 'height': '320px' 
+                    }))],
+                        style={'width': '100%', 'height': '400px', 
+                        'backgroundColor': '#FBE7A1', 'border': '2px solid #000000', 'border-radius': '5px', 
+                    })
         ],
                 md=6),                
         dbc.Col([
-            html.Iframe(
-                id='scatter2',
-                style={'width': '100%', 'height': '400px', 
-                'backgroundColor': '#FBE7A1', 'border': '3px solid #000000', 'border-radius': '10px'})])
-    ])
+            dbc.Card([
+                dbc.CardHeader(
+                    html.H5("Stressor of the bee colonies' lost",
+                        style={'font-family':'Roboto',  'font-weight':'600'})
+                        ),
+                dbc.CardBody(
+                    html.Iframe(
+                        id='scatter2',
+                        style={'width': '100%', 'height': '320px' 
+                    }))],
+                        style={'width': '100%', 'height': '400px', 
+                        'backgroundColor': '#FBE7A1', 'border': '2px solid #000000', 'border-radius': '5px', 
+                    })
+                ])
+    ], align="end",)
 ], style={'backgroundColor': '#FFF8DC'})
  
 
