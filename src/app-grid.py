@@ -180,8 +180,7 @@ def plot_timeseries(state_arg, start_date, end_date):
                 (colony["state"] == state_arg)
                 & (colony["period"] >= start_date)
                 & (colony["period"] <= end_date)
-            ],
-            title="Number of Colonies"
+            ]
         )
         .mark_line(size=4, color="black")
         .encode(
@@ -202,7 +201,7 @@ def plot_timeseries(state_arg, start_date, end_date):
         .configure_title(fontSize=14)
         .configure_legend(titleFontSize=14, labelFontSize=12)
         .configure_view(strokeWidth=0)
-        .properties(width=400, height=180)
+        .properties(width=450, height=190)
     )
     
     return colony_chart.to_html()
@@ -221,7 +220,7 @@ def plot_altair(state_arg, start_date, end_date):
                 (stressor["state"] == state_arg)
                 & (stressor["period"] >= start_date)
                 & (stressor["period"] <= end_date)
-            ], title="Colony Stressors")
+            ])
         .mark_bar()
         .encode(
             x=alt.X("period", title="Time period"),
@@ -234,7 +233,7 @@ def plot_altair(state_arg, start_date, end_date):
         .configure_title(fontSize=14)
         .configure_legend(titleFontSize=14, labelFontSize=12)
         .configure_view(strokeWidth=0)
-        .properties(width=400, height=180)
+        .properties(width=310, height=190)
     )
     return stressor_chart.to_html()
 
