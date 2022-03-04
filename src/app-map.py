@@ -5,9 +5,9 @@ import pandas as pd
 from vega_datasets import data
 
 # Read in global data
-colony = pd.read_csv('colony.csv')
-stressor = pd.read_csv('stressor.csv')
-state_info = pd.read_csv('state_info.csv')
+colony = pd.read_csv('data/colony.csv')
+stressor = pd.read_csv('data/stressor.csv')
+state_info = pd.read_csv('data/state_info.csv')
 state_map = alt.topo_feature(data.us_10m.url, 'states')
 
 # Wrangle data
