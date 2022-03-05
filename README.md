@@ -2,6 +2,8 @@
 
 ***Providing apiarists with valuable insights into bee colony health***
 
+![dashboard-gif]("docs/dash.gif")
+
 ## Welcome
 
 Thank you for showing interest in the Bee Colony Dashboard!
@@ -36,7 +38,7 @@ If you find a bug or have thought of a way in which our project can improve plea
 ## Sketch
 
 The following sketch is what we originally envisioned our dashboard looking like:
-![dashboard-sketch](dashboard-sketch.jpeg)
+![dashboard-sketch](docs/dashboard-sketch.jpeg)
 
 ## License
 
