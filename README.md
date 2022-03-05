@@ -6,7 +6,7 @@
 
 ## Welcome
 
-Thank you for showing interest in the Bee Colony Dashboard!
+Thank you for showing interest in the Bee Colony Dashboard! To view the dashboard please click [here](https://bee-colony-dashboard.herokuapp.com).
 
 This README was created to provide you with more information about this project. Use the links below to jump to a section or scroll down.
 
@@ -14,7 +14,6 @@ This README was created to provide you with more information about this project.
 * [Who are we?](#who-are-we)
 * [Get involved](#get-involved)
 * [Sketch](#sketch)
-* [Installation](#installation)
 * [License](##license)
 
 ## What are we doing?
@@ -25,7 +24,7 @@ During the winter of 2006-2007, some beekeepers in America began to report unusu
 
 ### The solution
 
-Easy access to data on declining colony health is therefore necessary to maintaining natural ecosystems and food systems. In particular our dashboard will allow users to visualize and explore the number of colonies, the loss trend, and colony stressors over time in different localities of the United States.
+Easy access to data on declining colony health is therefore necessary to maintaining natural ecosystems and food systems. In particular our dashboard will allow users to visualize and explore the number of colonies, the loss trend, and colony stressors over time in different localities of the United States through a time series plot, a stacked bar chart, and a geographic map.
 
 ## Who are we?
 
