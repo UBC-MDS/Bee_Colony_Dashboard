@@ -2,7 +2,7 @@
 
 ***Providing apiarists with valuable insights into bee colony health***
 
-![dashboard-gif]("docs/dash.gif")
+![dashboard-gif](docs/dash.gif)
 
 ## Welcome
 
