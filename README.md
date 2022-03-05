@@ -1,6 +1,6 @@
 # 🐝 Bee Colony Dashboard
 
-**Providing apiarists with valuable insights into bee colony health**
+***Providing apiarists with valuable insights into bee colony health***
 
 ## Welcome
 
@@ -19,9 +19,11 @@ This README was created to provide you with more information about this project.
 
 ### The problem
 
+During the winter of 2006-2007, some beekeepers in America began to report unusually high losses of 30-90 percent of their hives. Bees are one of the most essential components of modern agriculture as a wide variety of flowering plants, including apples and blueberries, require managed pollinators such as bees to ensure continued production. Colony loss has declined since then but is still a concern as bees are vital to the natural ecosystem and our food systems. Easy access to data on declining colony health is therefore necessary to maintaining these systems.
+
 ### The solution
 
-The Bee Colony Dashboard will feature three different plots and four different widgets. The first plot is a geographic map of the United States of America. The user will be able to adjust the time period (measured by quarters of a year) that they are looking at by using a slider. By hovering over a state, the user will obtain the maximum number of colonies for that time period as well as the colony loss percentage, measured as the number of lost colonies divided by the maximum number of colonies in that time period. The second plot is a time series plot of the number of colonies of a single state as it varies over a specified period of time. The third plot is a time series bar chart of the percentage colonies being affected by different types of colony stressors in a single state, as it varies over a specified period of time. Both the second and third plots are controlled using the same three drop-down lists. The first drop-down list allows the user to select a state that they wish to visualize the data for. The other two drop-down lists will control the start and end of the time period, respectively.
+Easy access to data on declining colony health is therefore necessary to maintaining natural ecosystems and food systems. In particular our dashboard will allow users to visualize and explore the number of colonies, the loss trend, and colony stressors over time in different localities of the United States.
 
 ## Who are we?
 
