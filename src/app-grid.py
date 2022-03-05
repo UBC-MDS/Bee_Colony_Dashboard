@@ -294,7 +294,7 @@ def plot_map(period):
         )
         .encode(
             color=alt.Color(
-                "colony_lost_pct:Q", legend=alt.Legend(title="Loss", padding=20)
+                "colony_lost_pct:Q", legend=alt.Legend(title="Loss %", padding=20)
             )
         )
         .project(type="albersUsa")
