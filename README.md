@@ -26,7 +26,7 @@ During the winter of 2006-2007, some beekeepers in America began to report unusu
 
 Easy access to data on declining colony health is therefore necessary to maintaining natural ecosystems and food systems. In particular our dashboard will allow users to visualize and explore the number of colonies, the loss trend, and colony stressors over time in different localities of the United States through a time series plot, a stacked bar chart, and a geographic map.
 
-In the geographic map of the United States of America, the user is be able to adjust the time period (measured by quarters of a year) that they are looking at by using a dropdown menu. By hovering over a state, the user can obtain the maximum number of colonies for that time period, the number of colonies at the end of the time period, as well as the colony loss percentage, measured as the number of lost colonies divided by the maximum number of colonies in that time period.
+In the geographic map of the United States of America, the user is be able to adjust the time period (measured by quarters of a year) that they are looking at by using a dropdown menu. By hovering over a state, the user can obtain the maximum number of colonies for that time period, as well as the colony loss percentage, measured as the number of lost colonies divided by the maximum number of colonies in that time period.
 
 In the time series plot, the number of colonies of a single state as it varies over a specified period of time is visualized, and by hovering over a point, the user can get an exact value of the number of colonies at a certain quarter of the year. The user can control the state and time period by choosing options through three different dropdown menus.
 
