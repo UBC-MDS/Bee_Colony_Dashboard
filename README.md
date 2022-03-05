@@ -14,7 +14,7 @@ This README was created to provide you with more information about this project.
 * [Who are we?](#who-are-we)
 * [Get involved](#get-involved)
 * [Sketch](#sketch)
-* [License](##license)
+* [License](#license)
 
 ## What are we doing?
 
