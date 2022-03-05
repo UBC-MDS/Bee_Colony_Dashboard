@@ -19,7 +19,7 @@ This README was created to provide you with more information about this project.
 
 ### The problem
 
-During the winter of 2006-2007, some beekeepers in America began to report unusually high losses of 30-90 percent of their hives. Bees are one of the most essential components of modern agriculture as a wide variety of flowering plants, including apples and blueberries, require managed pollinators such as bees to ensure continued production. Colony loss has declined since then but is still a concern as bees are vital to the natural ecosystem and our food systems. Easy access to data on declining colony health is therefore necessary to maintaining these systems.
+During the winter of 2006-2007, some beekeepers in America began to report unusually high losses of 30-90 percent of their hives. Bees are one of the most essential components of modern agriculture as a wide variety of flowering plants, including apples and blueberries, require managed pollinators such as bees to ensure continued production. Colony loss has declined since then but is still a concern as bees are vital to the natural ecosystem and our food systems.
 
 ### The solution
 
@@ -31,7 +31,7 @@ The founders of the Bee Colony Dashboard, [Daniel King](https://github.com/danfk
 
 ## Get involved
 
-We welcome and recognize all contributions. Please find the guide for contribution in [Contributing Document](https://github.com/UBC-MDS/Bee_Colony_Dashboard/blob/main/CONTRIBUTING.md).
+If you find a bug or have thought of a way in which our project can improve please refer to our [contributing guidelines](https://github.com/UBC-MDS/Bee_Colony_Dashboard/blob/main/CONTRIBUTING.md). We welcome and recognize all contributions! In addition, if you join us in this project we ask that you follow our [code of conduct](https://github.com/UBC-MDS/Bee_Colony_Dashboard/blob/readme/CONDUCT.md).
 
 ## Sketch
 
