@@ -10,11 +10,17 @@ Thank you for showing interest in the Bee Colony Dashboard! To view the dashboar
 
 This README was created to provide you with more information about this project. Use the links below to jump to a section or scroll down.
 
-* [What are we doing?](#overview)
-* [Who are we?](#who-are-we)
-* [Get involved](#get-involved)
-* [Sketch](#sketch)
-* [License](#license)
+- [🐝 Bee Colony Dashboard](#-bee-colony-dashboard)
+  - [Welcome](#welcome)
+  - [What are we doing?](#what-are-we-doing)
+    - [The problem](#the-problem)
+    - [The solution](#the-solution)
+  - [Who are we?](#who-are-we)
+  - [Get involved](#get-involved)
+  - [Sketch](#sketch)
+  - [License](#license)
+  - [Run the app locally](#run-the-app-locally)
+  - [Thank you](#thank-you)
 
 ## What are we doing?
 
@@ -48,6 +54,15 @@ The following sketch is what we originally envisioned our dashboard looking like
 ## License
 
 `Bee_Colony_Dashboard` was created by Daniel King, Manju Neervaram Abhinandana Kumar, Qingqing Song, and Tianwei Wang. It is licensed under the terms of the MIT license.
+
+## Run the app locally
+
+If you cannot open the app online for some reason, you can also run our app using Docker write the following commands after cloning the repo:
+```bash
+cd Bee_Colony_Dashboard
+docker-compose up
+```
+Finally, open the app in the followin URL http://localhost:8000/
 
 ## Thank you
 
