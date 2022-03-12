@@ -57,7 +57,7 @@ The following sketch is what we originally envisioned our dashboard looking like
 
 ## Run the app locally
 
-If you cannot open the app online for some reason, you can also run our app using Docker by writing the following commands after cloning the repo:
+If you cannot open the app online for some reason, you can also run our app using Docker by running the following commands from the command line after cloning the repo:
 ```bash
 cd Bee_Colony_Dashboard
 docker-compose up
