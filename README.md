@@ -62,7 +62,7 @@ If you cannot open the app online for some reason, you can also run our app usin
 cd Bee_Colony_Dashboard
 docker-compose up
 ```
-Finally, open the app in the following URL http://localhost:8000/
+Finally, open the app in the following URL: http://localhost:8000/
 
 ## Thank you
 
