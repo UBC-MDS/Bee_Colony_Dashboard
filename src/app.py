@@ -31,7 +31,7 @@ stressor["period"] = pd.PeriodIndex(pd.to_datetime(stressor["time"]), freq="Q").
 
 
 # Setup app and layout/frontend
-app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 app.title = "Bee Colony Loss in U.S."
 server = app.server
 app.layout = dbc.Container(
