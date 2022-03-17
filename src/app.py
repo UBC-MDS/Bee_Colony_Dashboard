@@ -31,7 +31,7 @@ stressor["period"] = pd.PeriodIndex(pd.to_datetime(stressor["time"]), freq="Q").
 
 
 # Setup app and layout/frontend
-app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
 app.title = "Bee Colony Loss in U.S."
 server = app.server
 app.layout = dbc.Container(
@@ -166,8 +166,10 @@ app.layout = dbc.Container(
                                 ],
                             ),
                             dbc.CardBody(
-                                html.Iframe(
-                                    id="map", style={"width": "100%", "height": "320px"}
+                                dcc.Loading(
+                                    children=html.Iframe(
+                                        id="map", style={"width": "100%", "height": "320px"}
+                                    )
                                 )
                             ),
                         ],
@@ -199,9 +201,11 @@ app.layout = dbc.Container(
                                     )
                                 ),
                                 dbc.CardBody(
-                                    html.Iframe(
-                                        id="ncolony_chart",
-                                        style={"width": "100%", "height": "320px"},
+                                    dcc.Loading(
+                                        html.Iframe(
+                                            id="ncolony_chart",
+                                            style={"width": "100%", "height": "320px"},
+                                        )
                                     )
                                 ),
                             ],
@@ -233,9 +237,11 @@ app.layout = dbc.Container(
                                 ),
                                 dbc.CardBody(
                                     [
-                                        html.Iframe(
-                                            id="stressor_chart",
-                                            style={"width": "100%", "height": "270px"},
+                                        dcc.Loading(
+                                            html.Iframe(
+                                                id="stressor_chart",
+                                                style={"width": "100%", "height": "270px"},
+                                            )
                                         ),
                                         html.H6(
                                             "Note that the percentage will add to more than 100 as a colony can be affected by multiple stressors in the same quarter.",
@@ -287,7 +293,7 @@ def plot_map(period):
     ]
 
     background = (
-        alt.Chart(state_map)
+        alt.Chart(state_map, title='Time Period: ' + period)
         .mark_geoshape(stroke="#706545", strokeWidth=1)
         .transform_lookup(
             lookup="id",
