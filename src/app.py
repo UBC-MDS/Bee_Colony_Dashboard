@@ -31,7 +31,7 @@ stressor["period"] = pd.PeriodIndex(pd.to_datetime(stressor["time"]), freq="Q").
 
 
 # Setup app and layout/frontend
-app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 app.title = "Bee Colony Loss in U.S."
 server = app.server
 app.layout = dbc.Container(
@@ -167,8 +167,9 @@ app.layout = dbc.Container(
                             ),
                             dbc.CardBody(
                                 dcc.Loading(
-                                    children=html.Iframe(
-                                        id="map", style={"width": "100%", "height": "320px"}
+                                    html.Iframe(
+                                        id="map", 
+                                        style={"width": "100%", "height": "320px"}
                                     )
                                 )
                             ),
