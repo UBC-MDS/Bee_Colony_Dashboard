@@ -15,9 +15,9 @@ To meet the needs of agricultural development, we decided to build a data visual
 
 ## Description of the data
 
-The honey bee colonies and stressors dataset were obtained from [TidyTuesday](https://github.com/rfordatascience/tidytuesday/blob/master/data/2022/2022-01-11/readme.md) who in turn obtained the raw data from the USDA.
+The honey bee colonies and stressors dataset were obtained from [TidyTuesday](https://github.com/rfordatascience/tidytuesday/blob/master/data/2022/2022-01-11/readme.md) who in turn obtained the raw data from the United States Department of Agriculture (USDA).
 
-The USDA collected the time series data from a stratified sample of operations across the United States that responded as having bees on the Bee and Honey Inquiry, and from the NASS list frame. Data was collected on a quarterly basis for operations with five or more colonies, and on an annual basis for operations with less than five colonies.
+The USDA collected the time series data from a stratified sample of operations across the United States that responded as having bees on the Bee and Honey Inquiry, and from the National Agriculture Statistics Service list frame. Data was collected on a quarterly basis for operations with five or more colonies, and on an annual basis for operations with less than five colonies.
 
 In our dashboard, we will visualize `colony_max` and `colony_loss_pct` on a geographic map of the United States. The variables `colony_max` and `colony_loss_pct` are the maximum number of colonies in a state for a particular time period, and the number of lost colonies since the start of the time period divided by `colony_max`, respectively. We will also visualize `colony_n`, the number of colonies in a state, as a time series plot. Our final visualization will be the percentage of colonies, `stress_pct`, that are affected by different colony health stressors, `stressor`, for a particular state over time as a stacked bar plot.
 
