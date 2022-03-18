@@ -166,8 +166,11 @@ app.layout = dbc.Container(
                                 ],
                             ),
                             dbc.CardBody(
-                                html.Iframe(
-                                    id="map", style={"width": "100%", "height": "320px"}
+                                dcc.Loading(
+                                    html.Iframe(
+                                        id="map", 
+                                        style={"width": "100%", "height": "320px"}
+                                    )
                                 )
                             ),
                         ],
@@ -199,9 +202,11 @@ app.layout = dbc.Container(
                                     )
                                 ),
                                 dbc.CardBody(
-                                    html.Iframe(
-                                        id="ncolony_chart",
-                                        style={"width": "100%", "height": "320px"},
+                                    dcc.Loading(
+                                        html.Iframe(
+                                            id="ncolony_chart",
+                                            style={"width": "100%", "height": "320px"},
+                                        )
                                     )
                                 ),
                             ],
@@ -233,9 +238,11 @@ app.layout = dbc.Container(
                                 ),
                                 dbc.CardBody(
                                     [
-                                        html.Iframe(
-                                            id="stressor_chart",
-                                            style={"width": "100%", "height": "270px"},
+                                        dcc.Loading(
+                                            html.Iframe(
+                                                id="stressor_chart",
+                                                style={"width": "100%", "height": "270px"},
+                                            )
                                         ),
                                         html.H6(
                                             "Note that the percentage will add to more than 100 as a colony can be affected by multiple stressors in the same quarter.",
@@ -287,7 +294,7 @@ def plot_map(period):
     ]
 
     background = (
-        alt.Chart(state_map)
+        alt.Chart(state_map, title='Time Period: ' + period)
         .mark_geoshape(stroke="#706545", strokeWidth=1)
         .transform_lookup(
             lookup="id",
