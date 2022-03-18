@@ -82,7 +82,8 @@ app.layout = dbc.Container(
                         dbc.Row(
                             dcc.Dropdown(
                                 id="state-widget",
-                                value="Alabama",
+                                value=["Alabama"],
+                                multi=True,
                                 options=[
                                     {"label": state, "value": state}
                                     for state in colony["state"].unique()
@@ -344,12 +345,14 @@ def plot_timeseries(state_arg, start_date, end_date):
     colony_chart_line = (
         alt.Chart(
             colony[
-                (colony["state"] == state_arg)
+                (colony['state'].isin(state_arg))
                 & (colony["period"] >= start_date)
                 & (colony["period"] <= end_date)
             ]
         )
-        .mark_line(size=4, color="black")
+        .mark_line(
+            size=4
+        )
         .encode(
             x=alt.X("time", title="Time", axis=alt.Axis(format="%b %Y", labelAngle=30)),
             y=alt.Y(
@@ -358,13 +361,15 @@ def plot_timeseries(state_arg, start_date, end_date):
                 axis=alt.Axis(format="s"),
                 scale=alt.Scale(zero=False),
             ),
+            color=alt.Color("state", legend=None),
             tooltip=alt.Tooltip(["colony_n"], title="Count"),
         )
     )
 
     colony_chart_point = colony_chart_line.mark_point(
-        color="black", fill="black", size=50
-    )
+        opacity=1,
+        size=50
+    ).encode(fill=alt.Fill("state", title="State"))
 
     colony_chart = (
         (colony_chart_line + colony_chart_point)
