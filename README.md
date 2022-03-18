@@ -38,7 +38,7 @@ In the stacked bar chart, the percentage of colonies being affected by different
 
 In the geographic map of the United States of America, the user is be able to adjust the time period (measured by quarters of a year) that they are looking at by using a dropdown menu. By hovering over a state, the user can obtain the maximum number of colonies for that time period, as well as the colony loss percentage, measured as the number of lost colonies divided by the maximum number of colonies in that time period.
 
-Please refer to our [proposal]("https://github.com/UBC-MDS/Bee_Colony_Dashboard/blob/main/docs/proposal.md") for more information.
+Please refer to our [proposal](https://github.com/UBC-MDS/Bee_Colony_Dashboard/blob/main/docs/proposal.md) for more information.
 
 ## Who are we?
 
