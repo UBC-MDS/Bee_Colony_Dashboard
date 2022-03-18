@@ -28,7 +28,8 @@ stressor = stressor.drop(["year", "months", "start_month"], axis=1)
 stressor["period"] = pd.PeriodIndex(pd.to_datetime(stressor["time"]), freq="Q").astype(
     "str"
 )
-
+stressor.loc[stressor["stressor"] == "Disesases", "stressor"] = "Diseases"
+stressor.loc[stressor["stressor"] == "Unknown", "stressor"] = "Other"
 
 # Setup app and layout/frontend
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
@@ -52,12 +53,12 @@ app.layout = dbc.Container(
                             },
                         ),
                         html.H4(
-                            "Select the period for map...",
+                            "Select the period for map and stressors...",
                             style={"font-family": "Roboto", "font-weight": "600"},
                         ),
                         dbc.Row(
                             dcc.Dropdown(
-                                id="map-widget",
+                                id="period-widget",
                                 value="2020Q1",
                                 options=[
                                     {"label": period, "value": period}
@@ -76,7 +77,7 @@ app.layout = dbc.Container(
                         ),
                         html.Br(),
                         html.H4(
-                            "Select a state for trend and stressor...",
+                            "Select states for time-series and stressors...",
                             style={"font-family": "Roboto", "font-weight": "600"},
                         ),
                         dbc.Row(
@@ -101,7 +102,7 @@ app.layout = dbc.Container(
                         ),
                         html.Br(),
                         html.H4(
-                            "Select the period for trend and stressor...",
+                            "Select the period for time-series...",
                             style={"font-family": "Roboto", "font-weight": "600"},
                         ),
                         dbc.Row(
@@ -158,10 +159,12 @@ app.layout = dbc.Container(
                             dbc.CardHeader(
                                 [
                                     html.H4(
-                                        "Bee colony loss percentages by state",
+                                        "Bee Colony Loss Percentages by State",
                                         style={
                                             "font-family": "Roboto",
                                             "font-weight": "600",
+                                            "textAlign": "center",
+                                            "vertical-align": "middle"
                                         },
                                     ),
                                 ],
@@ -195,10 +198,12 @@ app.layout = dbc.Container(
                             [
                                 dbc.CardHeader(
                                     html.H4(
-                                        "Number of bee colonies over time",
+                                        "Number of Bee Colonies Over Time",
                                         style={
                                             "font-family": "Roboto",
                                             "font-weight": "600",
+                                            "textAlign": "center",
+                                            "vertical-align": "middle"
                                         },
                                     )
                                 ),
@@ -229,10 +234,12 @@ app.layout = dbc.Container(
                                 dbc.CardHeader(
                                     [
                                         html.H4(
-                                            "Bee colony stressors",
+                                            "Bee Colony Stressors by State",
                                             style={
                                                 "font-family": "Roboto",
                                                 "font-weight": "600",
+                                                "textAlign": "center",
+                                                "vertical-align": "middle"
                                             },
                                         ),
                                     ]
@@ -242,13 +249,9 @@ app.layout = dbc.Container(
                                         dcc.Loading(
                                             html.Iframe(
                                                 id="stressor_chart",
-                                                style={"width": "100%", "height": "270px"},
+                                                style={"width": "100%", "height": "320px"},
                                             )
-                                        ),
-                                        html.H6(
-                                            "Note that the percentage will add to more than 100 as a colony can be affected by multiple stressors in the same quarter.",
-                                            style={"font-family": "Roboto"},
-                                        ),
+                                        )
                                     ]
                                 ),
                             ],
@@ -270,7 +273,7 @@ app.layout = dbc.Container(
 
 
 # Plot the map
-@app.callback(Output("map", "srcDoc"), Input("map-widget", "value"))
+@app.callback(Output("map", "srcDoc"), Input("period-widget", "value"))
 def plot_map(period):
     df = colony[colony["period"] == period]
     target_df = pd.merge(state_info, df, how="left", on="state")
@@ -323,12 +326,12 @@ def plot_map(period):
 
     map_chart = (
         (background + text)
-        .configure(background="#fffadc", padding=20)
+        .configure(background="#fffadc", padding=10)
         .configure_axis(titleFontSize=14, labelFontSize=12, grid=False)
-        .configure_title(fontSize=14)
+        .configure_title(fontSize=14, align="center", anchor="middle")
         .configure_legend(titleFontSize=14, labelFontSize=12)
         .configure_view(strokeWidth=0)
-        .properties(width=420, height=250)
+        .properties(width=400, height=250)
     )
 
     return map_chart.to_html()
@@ -373,12 +376,12 @@ def plot_timeseries(state_arg, start_date, end_date):
 
     colony_chart = (
         (colony_chart_line + colony_chart_point)
-        .configure(background="#fffadc", padding=20)
+        .configure(background="#fffadc", padding=10)
         .configure_axis(titleFontSize=14, labelFontSize=12, grid=False)
         .configure_title(fontSize=14)
         .configure_legend(titleFontSize=14, labelFontSize=12)
         .configure_view(strokeWidth=0)
-        .properties(width=450, height=190)
+        .properties(width=400, height=190)
     )
 
     return colony_chart.to_html()
@@ -388,36 +391,41 @@ def plot_timeseries(state_arg, start_date, end_date):
 @app.callback(
     Output("stressor_chart", "srcDoc"),
     Input("state-widget", "value"),
-    Input("start-date-widget", "value"),
-    Input("end-date-widget", "value"),
+    Input("period-widget", "value")
 )
-def plot_altair(state_arg, start_date, end_date):
+def plot_altair(state_arg, period):
     stressor_chart = (
         alt.Chart(
             stressor[
-                (stressor["state"] == state_arg)
-                & (stressor["period"] >= start_date)
-                & (stressor["period"] <= end_date)
-            ]
+                (stressor['state'].isin(state_arg))
+                & (stressor["period"] == period)
+            ],
+            title="Time Period: " + period
         )
         .mark_bar()
         .encode(
-            x=alt.X("period", title="Time period", axis=alt.Axis(labelAngle=30)),
+            x=alt.X(
+                "stressor",
+                title=None,
+                axis=alt.Axis(labelAngle=30),
+                sort=["Diseases", "Pesticides", "Varroa mites", "Other pests/parasites", "Other"]
+            ),
             y=alt.Y(
                 "stress_pct", title="Impacted colonies (%)", axis=alt.Axis(format="s")
             ),
-            color=alt.Color("stressor", title="Stressor"),
+            color=alt.Color("stressor", title="Stressor", legend=None),
             tooltip=[
                 alt.Tooltip("stressor", title="Stressor"),
                 alt.Tooltip("stress_pct", title="Impacted colonies(%)"),
             ],
+            column=alt.Column("state", title=None, header=alt.Header(titleFontSize=14, labelFontSize=12))
         )
-        .configure(background="#fffadc", padding=20)
+        .configure(background="#fffadc", padding=10)
         .configure_axis(titleFontSize=14, labelFontSize=12, grid=False)
-        .configure_title(fontSize=14)
+        .configure_title(fontSize=14, align="center", anchor="middle")
         .configure_legend(titleFontSize=14, labelFontSize=12)
         .configure_view(strokeWidth=0)
-        .properties(width=310, height=140)
+        .properties(width=150, height=140)
     )
     return stressor_chart.to_html()
 
