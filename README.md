@@ -38,6 +38,8 @@ In the stacked bar chart, the percentage of colonies being affected by different
 
 In the geographic map of the United States of America, the user is be able to adjust the time period (measured by quarters of a year) that they are looking at by using a dropdown menu. By hovering over a state, the user can obtain the maximum number of colonies for that time period, as well as the colony loss percentage, measured as the number of lost colonies divided by the maximum number of colonies in that time period.
 
+Please refer to our [proposal]("docs/proposal.md") for more information.
+
 ## Who are we?
 
 The founders of the Bee Colony Dashboard, [Daniel King](https://github.com/danfke), [Manju Neervaram Abhinandana Kumar](https://github.com/manju-abhinandana), [Qingqing Song](https://github.com/scarlqq), and [Tianwei Wang](https://github.com/Davidwang11), are Masters of Data Science students at the University of British Columbia.
@@ -58,11 +60,13 @@ The following sketch is what we originally envisioned our dashboard looking like
 ## Run the app locally
 
 If you cannot open the app online for some reason, you can also run our app using Docker by running the following commands from the command line after cloning the repo:
+
 ```bash
 cd Bee_Colony_Dashboard
 docker-compose up
 ```
-Finally, open the app in the following URL: http://localhost:8000/
+
+Finally, open the app in the following URL: <http://localhost:8000/>
 
 ## Thank you
 
