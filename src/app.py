@@ -53,7 +53,7 @@ app.layout = dbc.Container(
                             },
                         ),
                         html.H4(
-                            "Select the period for map and stressors...",
+                            "Select the period for the map and stressors...",
                             style={"font-family": "Roboto", "font-weight": "600"},
                         ),
                         dbc.Row(
@@ -77,13 +77,13 @@ app.layout = dbc.Container(
                         ),
                         html.Br(),
                         html.H4(
-                            "Select states for time-series and stressors...",
+                            "Select states for the time-series and stressors...",
                             style={"font-family": "Roboto", "font-weight": "600"},
                         ),
                         dbc.Row(
                             dcc.Dropdown(
                                 id="state-widget",
-                                value=["Alabama"],
+                                value=["Alabama", "Arizona"],
                                 multi=True,
                                 options=[
                                     {"label": state, "value": state}
@@ -102,50 +102,29 @@ app.layout = dbc.Container(
                         ),
                         html.Br(),
                         html.H4(
-                            "Select the period for time-series...",
+                            "Select the period for the time-series...",
                             style={"font-family": "Roboto", "font-weight": "600"},
                         ),
                         dbc.Row(
-                            [
-                                dbc.Col(
-                                    dcc.Dropdown(
-                                        id="start-date-widget",
-                                        value="2015Q1",
-                                        options=[
-                                            {"label": start_date, "value": start_date}
-                                            for start_date in colony["period"].unique()
-                                        ],
-                                        style={
-                                            "height": "50px",
-                                            "vertical-align": "middle",
-                                            "font-family": "Roboto",
-                                            "font-size": "28px",
-                                            "textAlign": "center",
-                                            "border-radius": "10px",
-                                        },
-                                        placeholder="Select a year",
-                                    )
-                                ),
-                                dbc.Col(
-                                    dcc.Dropdown(
-                                        id="end-date-widget",
-                                        value="2015Q4",
-                                        options=[
-                                            {"label": end_date, "value": end_date}
-                                            for end_date in colony["period"].unique()
-                                        ],
-                                        style={
-                                            "height": "50px",
-                                            "vertical-align": "middle",
-                                            "font-family": "Roboto",
-                                            "font-size": "28px",
-                                            "textAlign": "center",
-                                            "border-radius": "10px",
-                                        },
-                                        placeholder="Select a time period",
-                                    )
-                                ),
-                            ],
+                             dcc.RangeSlider(
+                                id='time-slider',
+                                min=(pd.to_datetime(min(colony["period"])) - pd.Timestamp("1970-01-01")) // pd.Timedelta('1s'),
+                                max=(pd.to_datetime(max(colony["period"])) - pd.Timestamp("1970-01-01")) // pd.Timedelta('1s'),
+                                marks={
+                                        (pd.to_datetime(min(colony["period"])) - pd.Timestamp("1970-01-01")) // pd.Timedelta('1s'): "2015Q1",
+                                        (pd.to_datetime("2015-10-01") - pd.Timestamp("1970-01-01")) // pd.Timedelta('1s'): "2015Q4",
+                                        (pd.to_datetime("2016-10-01") - pd.Timestamp("1970-01-01")) // pd.Timedelta('1s'): "2016Q4",
+                                        (pd.to_datetime("2017-10-01") - pd.Timestamp("1970-01-01")) // pd.Timedelta('1s'): "2017Q4",
+                                        (pd.to_datetime("2018-07-01") - pd.Timestamp("1970-01-01")) // pd.Timedelta('1s'): "2018Q3",
+                                        (pd.to_datetime("2019-07-01") - pd.Timestamp("1970-01-01")) // pd.Timedelta('1s'): "2019Q3",
+                                        (pd.to_datetime("2020-07-01") - pd.Timestamp("1970-01-01")) // pd.Timedelta('1s'): "2020Q3",     
+                                        (pd.to_datetime(max(colony["period"])) - pd.Timestamp("1970-01-01")) // pd.Timedelta('1s'): "2021Q2"
+                                },
+                                value=[
+                                    (pd.to_datetime("2017-10-01") - pd.Timestamp("1970-01-01")) // pd.Timedelta('1s'),
+                                    (pd.to_datetime("2018-07-01") - pd.Timestamp("1970-01-01")) // pd.Timedelta('1s')
+                                ]
+                            ),
                             className="g-0",
                         ),
                     ],
@@ -341,16 +320,17 @@ def plot_map(period):
 @app.callback(
     Output("ncolony_chart", "srcDoc"),
     Input("state-widget", "value"),
-    Input("start-date-widget", "value"),
-    Input("end-date-widget", "value"),
+    Input("time-slider", "value")
 )
-def plot_timeseries(state_arg, start_date, end_date):
+def plot_timeseries(state_arg, time_range):# start_date, end_date):
+    start_date = pd.to_datetime(time_range[0], unit="s")
+    end_date = pd.to_datetime(time_range[1], unit="s")
     colony_chart_line = (
         alt.Chart(
             colony[
                 (colony['state'].isin(state_arg))
-                & (colony["period"] >= start_date)
-                & (colony["period"] <= end_date)
+                & (colony["time"] >= start_date)
+                & (colony["time"] <= end_date)
             ]
         )
         .mark_line(
