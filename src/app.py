@@ -41,6 +41,7 @@ app.layout = dbc.Container(
             [
                 dbc.Col(
                     [
+                        # App title
                         html.H1(
                             "Bee Colony Dashboard",
                             style={
@@ -52,6 +53,7 @@ app.layout = dbc.Container(
                                 "border-radius": "5px",
                             },
                         ),
+                        # Time period dropdowm menu for map and stressor charts
                         html.H4(
                             "Select the period for the map and stressors...",
                             style={"font-family": "Roboto", "font-weight": "600"},
@@ -76,6 +78,7 @@ app.layout = dbc.Container(
                             )
                         ),
                         html.Br(),
+                        # State selection dropdown menu for time-series and stressor charts
                         html.H4(
                             "Select states for the time-series and stressors...",
                             style={"font-family": "Roboto", "font-weight": "600"},
@@ -101,6 +104,7 @@ app.layout = dbc.Container(
                             )
                         ),
                         html.Br(),
+                        # Slider for time range of the time-series chart
                         html.H4(
                             "Select the period for the time-series...",
                             style={"font-family": "Roboto", "font-weight": "600"},
@@ -133,6 +137,7 @@ app.layout = dbc.Container(
                 ),
                 html.Br(),
                 dbc.Col(
+                    # Map of loss percentages
                     dbc.Card(
                         [
                             dbc.CardHeader(
@@ -173,6 +178,7 @@ app.layout = dbc.Container(
             [
                 dbc.Col(
                     [
+                        # Time-series of number of colonies
                         dbc.Card(
                             [
                                 dbc.CardHeader(
@@ -208,6 +214,7 @@ app.layout = dbc.Container(
                 ),
                 dbc.Col(
                     [
+                        # Stressor bar chart
                         dbc.Card(
                             [
                                 dbc.CardHeader(
@@ -377,7 +384,7 @@ def plot_timeseries(state_arg, time_range):# start_date, end_date):
     return colony_chart.to_html()
 
 
-# Plot the stressor
+# Plot the stressors
 @app.callback(
     Output("stressor_chart", "srcDoc"),
     Input("state-widget", "value"),
