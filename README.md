@@ -2,7 +2,7 @@
 
 ***Providing apiarists with valuable insights into bee colony health***
 
-![dashboard-gif](docs/dash.gif)
+![dashboard-gif](docs/dashpy.gif)
 
 ## Welcome
 
@@ -30,11 +30,11 @@ During the winter of 2006-2007, some beekeepers in America began to report unusu
 
 ### The solution
 
-Easy access to data on declining colony health is therefore necessary to maintaining natural ecosystems and food systems. In particular our dashboard will allow users to visualize and explore the number of colonies, the loss trend, and colony stressors over time in different localities of the United States through a time series plot, a stacked bar chart, and a geographic map.
+Easy access to data on declining colony health is therefore necessary to maintaining natural ecosystems and food systems. In particular our dashboard will allow users to visualize and explore the number of colonies, the loss trend, and colony stressors in different localities of the United States through a geographic map, a time series plot, and a  bar chart.
 
-In the time series plot, the number of colonies of a single state as it varies over a specified period of time is visualized, and by hovering over a point, the user can get an exact value of the number of colonies at a certain quarter of the year. The user can control the state and time period by choosing options through three different dropdown menus.
+In the time series plot, the number of colonies of states as it varies over a specified period of time is visualized, and by hovering over a point, the user can get an exact value of the number of colonies at a certain quarter of the year. For each state specified, a separate time series is visualized in the plot.The user can control the states by choosing options through a dropdown menu and time period throught a slider.
 
-In the stacked bar chart, the percentage of colonies being affected by different types of colony stressors in a single state, as it varies over a specified period of time is visualized. By hovering over a segment of the bar chart, the user can obtain the exact percentage of colonies being affected by a certain stressor type at a certain quarter of the year. Using the same dropdown menus as the time series plot, the user can control the state and time period that is visualized.
+In the bar chart, the percentage of colonies being affected by different types of colony stressors in specified states, as in a specified period of time is visualized. By hovering over the bar chart, the user can obtain the exact percentage of colonies being affected by a certain stressor type in a states.Using the same dropdown menus as the time series plot and geographic map, the user can control the state and time period that is visualized. 
 
 In the geographic map of the United States of America, the user is be able to adjust the time period (measured by quarters of a year) that they are looking at by using a dropdown menu. By hovering over a state, the user can obtain the maximum number of colonies for that time period, as well as the colony loss percentage, measured as the number of lost colonies divided by the maximum number of colonies in that time period.
 
@@ -46,7 +46,7 @@ The founders of the Bee Colony Dashboard, [Daniel King](https://github.com/danfk
 
 ## Get involved
 
-If you find a bug or have thought of a way in which our project can improve please refer to our [contributing guidelines](https://github.com/UBC-MDS/Bee_Colony_Dashboard/blob/main/CONTRIBUTING.md). We welcome and recognize all contributions! In addition, if you join us in this project we ask that you follow our [code of conduct](https://github.com/UBC-MDS/Bee_Colony_Dashboard/blob/readme/CONDUCT.md).
+If you find a bug or have thought of a way in which our project can improve please refer to our [contributing guidelines](https://github.com/UBC-MDS/Bee_Colony_Dashboard/blob/main/CONTRIBUTING.md). We welcome and recognize all contributions! In addition, if you join us in this project we ask that you follow our [code of conduct](https://github.com/UBC-MDS/Bee_Colony_Dashboard/blob/main/CONDUCT.md).
 
 ## Sketch
 
