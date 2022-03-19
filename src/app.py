@@ -246,6 +246,16 @@ app.layout = dbc.Container(
                 ),
             ]
         ),
+        html.Div(
+            dbc.Alert(
+                [ 
+                    html.Hr(),
+                    "For more info please visit: ",
+                    html.A("Github", href="https://github.com/UBC-MDS/Bee_Colony_Dashboard", className="alert-link"),
+                    ],
+            color="None"
+                )
+        )
     ],
     style={"backgroundColor": "#FFF8DC"},
 )
